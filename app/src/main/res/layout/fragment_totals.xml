@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    tools:context="com.example.npreszler.cs3270a4.FragmentTotals">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/total_amount" />
+
+    <TextView
+        android:id="@+id/txvTotalAmount"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textAlignment="textEnd"
+        android:text="@string/bling_0_dot_00"/>
+
+</LinearLayout>

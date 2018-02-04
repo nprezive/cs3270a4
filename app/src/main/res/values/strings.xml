@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">CS3270A4</string>
+    <string name="app_name">CS3270A4 Preszler</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="bling_0_dot_00">$0.00</string>
+    <string name="tax_rate">Tax Rate</string>
+    <string name="_0_dot_00_percent">0.00%</string>
+    <string name="tax_amount">Tax Amount</string>
+    <string name="item_amount">Item Amount</string>
+    <string name="_0">0</string>
 </resources>
