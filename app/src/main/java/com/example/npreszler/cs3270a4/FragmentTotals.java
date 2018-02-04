@@ -1,6 +1,8 @@
 package com.example.npreszler.cs3270a4;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -42,5 +44,23 @@ public class FragmentTotals extends Fragment {
         df.setMaximumFractionDigits(2);
         double taxRate = ((double) value) * 25 / 100 / 100 + 1;
         txvAmount.setText("$" + df.format(subTotal.multiply(new BigDecimal(taxRate))));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor spEdit = sp.edit();
+
+        spEdit.putString("totalAmount", txvAmount.getText().toString());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        txvAmount.setText(sp.getString("totalAmount", getString(R.string.bling_0_dot_00)));
     }
 }
