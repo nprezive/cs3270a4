@@ -5,7 +5,7 @@
     tools:context="com.example.npreszler.cs3270a4.FragmentItems">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,7 +18,6 @@
                 android:id="@+id/edtItemAmount1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"
                 android:textAlignment="textEnd"
                 android:inputType="numberDecimal"/>
         </LinearLayout>
@@ -33,7 +32,6 @@
                 android:id="@+id/edtItemAmount2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"
                 android:textAlignment="textEnd"
                 android:inputType="numberDecimal"/>
         </LinearLayout>
@@ -48,7 +46,6 @@
                 android:id="@+id/edtItemAmount3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"
                 android:textAlignment="textEnd"
                 android:inputType="numberDecimal"/>
         </LinearLayout>
@@ -63,7 +60,6 @@
                 android:id="@+id/edtItemAmount4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/_0"
                 android:textAlignment="textEnd"
                 android:inputType="numberDecimal"/>
         </LinearLayout>

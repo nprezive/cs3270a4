@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-
 import java.math.BigDecimal;
 
 
@@ -86,10 +85,10 @@ public class FragmentItems extends Fragment {
         super.onResume();
 
         SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
-        edtItemAmount1.setText(sp.getString("ItemAmount1", getString(R.string._0)));
-        edtItemAmount2.setText(sp.getString("ItemAmount2", getString(R.string._0)));
-        edtItemAmount3.setText(sp.getString("ItemAmount3", getString(R.string._0)));
-        edtItemAmount4.setText(sp.getString("ItemAmount4", getString(R.string._0)));
+        edtItemAmount1.setText(sp.getString("ItemAmount1", ""));
+        edtItemAmount2.setText(sp.getString("ItemAmount2", ""));
+        edtItemAmount3.setText(sp.getString("ItemAmount3", ""));
+        edtItemAmount4.setText(sp.getString("ItemAmount4", ""));
     }
 
     @Override
@@ -110,10 +109,10 @@ public class FragmentItems extends Fragment {
         String s3 = edtItemAmount3.getText().toString();
         String s4 = edtItemAmount4.getText().toString();
 
-        BigDecimal a1 = s1.equals("") ? new BigDecimal(0) : new BigDecimal(s1);
-        BigDecimal a2 = s2.equals("") ? new BigDecimal(0) : new BigDecimal(s2);
-        BigDecimal a3 = s3.equals("") ? new BigDecimal(0) : new BigDecimal(s3);
-        BigDecimal a4 = s4.equals("") ? new BigDecimal(0) : new BigDecimal(s4);
+        BigDecimal a1 = s1.equals("") || s1.equals(".") ? new BigDecimal(0) : new BigDecimal(s1);
+        BigDecimal a2 = s2.equals("") || s2.equals(".") ? new BigDecimal(0) : new BigDecimal(s2);
+        BigDecimal a3 = s3.equals("") || s3.equals(".") ? new BigDecimal(0) : new BigDecimal(s3);
+        BigDecimal a4 = s4.equals("") || s4.equals(".") ? new BigDecimal(0) : new BigDecimal(s4);
 
         return a1.add(a2).add(a3).add(a4);
     }

@@ -6,17 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 /**
@@ -55,6 +51,7 @@ public class FragmentTax extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_tax, container, false);
+
         sbTax = (SeekBar) rootView.findViewById(R.id.sbTax);
         txvTaxRate = (TextView) rootView.findViewById(R.id.txvTaxRate);
         txvTaxAmount = (TextView) rootView.findViewById(R.id.txvTaxAmount);
@@ -103,17 +100,15 @@ public class FragmentTax extends Fragment {
 
     public void setTxvTaxRate(int value) {
         double taxRate = ((double) value) * 25 / 100;
-        //TODO use a resource string with placeholders instead
-        txvTaxRate.setText(String.format("%.2f", taxRate) + "%");
+        txvTaxRate.setText(String.format("%.2f%%", taxRate));
     }
 
     public void setTxvTaxAmount(int value, BigDecimal subTotal) {
         double taxRate = ((double) value) * 25 / 100 / 100;
-        DecimalFormat df = new DecimalFormat();
-        df.setMinimumFractionDigits(2);
-        df.setMaximumFractionDigits(2);
-        //TODO de-localize it (no dollar sign)
-        txvTaxAmount.setText("$" + df.format(subTotal.multiply(new BigDecimal(taxRate))));
+        BigDecimal total = subTotal.multiply(new BigDecimal(taxRate));
+
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        txvTaxAmount.setText(format.format(total));
     }
 
     public int getTaxSeekValue() {

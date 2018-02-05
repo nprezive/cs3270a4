@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.math.BigDecimal;
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 
 /**
@@ -38,12 +37,11 @@ public class FragmentTotals extends Fragment {
     }
 
     public void setTotalAmount(int value, BigDecimal subTotal) {
-        //TODO de-localize (no dollar sign) it
-        DecimalFormat df = new DecimalFormat();
-        df.setMinimumFractionDigits(2);
-        df.setMaximumFractionDigits(2);
         double taxRate = ((double) value) * 25 / 100 / 100 + 1;
-        txvAmount.setText("$" + df.format(subTotal.multiply(new BigDecimal(taxRate))));
+        BigDecimal total = subTotal.multiply(new BigDecimal(taxRate));
+
+        NumberFormat format = NumberFormat.getCurrencyInstance();
+        txvAmount.setText(format.format(total));
     }
 
     @Override
@@ -51,10 +49,9 @@ public class FragmentTotals extends Fragment {
         super.onPause();
 
         SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor spEdit = sp.edit();
-
-        spEdit.putString("totalAmount", txvAmount.getText().toString());
-        spEdit.commit();
+        sp.edit()
+                .putString("totalAmount", txvAmount.getText().toString())
+                .commit();
     }
 
     @Override
