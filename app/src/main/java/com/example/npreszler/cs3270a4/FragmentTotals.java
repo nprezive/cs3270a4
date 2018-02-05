@@ -54,6 +54,7 @@ public class FragmentTotals extends Fragment {
         SharedPreferences.Editor spEdit = sp.edit();
 
         spEdit.putString("totalAmount", txvAmount.getText().toString());
+        spEdit.commit();
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.example.npreszler.cs3270a4;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -77,6 +79,29 @@ public class FragmentItems extends Fragment {
         edtItemAmount4.addTextChangedListener(itemAmountTextWatcher);
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        edtItemAmount1.setText(sp.getString("ItemAmount1", getString(R.string._0)));
+        edtItemAmount2.setText(sp.getString("ItemAmount2", getString(R.string._0)));
+        edtItemAmount3.setText(sp.getString("ItemAmount3", getString(R.string._0)));
+        edtItemAmount4.setText(sp.getString("ItemAmount4", getString(R.string._0)));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        sp.edit().putString("ItemAmount1", edtItemAmount1.getText().toString())
+                .putString("ItemAmount2", edtItemAmount2.getText().toString())
+                .putString("ItemAmount3", edtItemAmount3.getText().toString())
+                .putString("ItemAmount4", edtItemAmount4.getText().toString())
+                .commit();
     }
 
     public BigDecimal getItemAmountTotal() {

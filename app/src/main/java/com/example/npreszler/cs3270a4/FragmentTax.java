@@ -2,6 +2,8 @@ package com.example.npreszler.cs3270a4;
 
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -76,6 +78,27 @@ public class FragmentTax extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        sbTax.setProgress(sp.getInt("seekBar", 0));
+        txvTaxRate.setText(sp.getString("taxRate", getString(R.string._0_dot_00_percent)));
+        txvTaxAmount.setText(sp.getString("taxAmount", getString(R.string.bling_0_dot_00)));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        SharedPreferences sp = getActivity().getPreferences(Context.MODE_PRIVATE);
+        sp.edit().putInt("seekBar", sbTax.getProgress())
+                .putString("taxRate", txvTaxRate.getText().toString())
+                .putString("taxAmount", txvTaxAmount.getText().toString())
+                .commit();
     }
 
     public void setTxvTaxRate(int value) {
